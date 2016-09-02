@@ -7,9 +7,15 @@ import edu.princeton.cs.introcs.StdOut;
  * 
  * Initialize N
  * 
- * Union N (too expansive)
+ * Union N (too expansive to N object)
  * 
  * find 1
+ * 
+ * Trees are flat , but too expensive to keep them flat ;
+ * 
+ * 电脑的处理速度和存储力上升了10倍，如果用这个19世纪的方法去UF的话，我们就要用提升10倍的性能去面对100倍的难度
+ * 
+ * 我们使用lazy approach的方法去改进算法，即如果你可以不必做某件事的时候，你就别去做它
  * 
  * @author coco11563
  *
