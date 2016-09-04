@@ -2,48 +2,57 @@ package UF;
 
 import edu.princeton.cs.introcs.StdOut;
 
-public class UF_sample_2 {
+public class UF_sample_3 {
 	/**
-	 * Initialize N
+	 * now we try to make the Quick-Union tree more short
 	 * 
-	 * Union N ↑
+	 * Modify quick-union to avoid tall trees
 	 * 
-	 * Find N
+	 * Keep track of size of each tree(number of object)
 	 * 
-	 * Tree could be too tall - so the connected method maybe too slow
+	 * Balance by ** linking root of smaller tree to roof of large trss. **
 	 * 
-	 * Find is too expensive - could be N array accesses(worst situation)
+	 * WEIGHT UNION
 	 * 
-	 * @param args
+	 * Initialized N
+	 * 
+	 * Union lgN ↑
+	 * 
+	 * Connected lgN
 	 */
-	
+	public int[] sz ; //size tree to store the number of son that every roots have 
 	public int[] id ;
 	public int count ;
-	public UF_sample_2(int n){
+	public UF_sample_3(int n){
 		id = new int[n];
+		sz = new int[n];
 		count = n ;
 		for(int i = 0 ; i < n ; i++){
 			id[i] = i ;
+			sz[i] = 1 ;
 		}
-	}
-	public void union(int num1 , int num2){
-		id[getRoot(num1)] = getRoot(num2) ; //单个节点的根连接到单个点的根处，而不是单纯的连到单个点
 	}
 	public int getRoot(int num){
-		int m = num ;
-		while(id[m]!=m){
-			m = id[m];
+		while(num!=id[num]){
+//			id[num] = id[id[num]];
+			num = id[num];
 		}
-		return m;
+		return num ;
+	}
+	public void union(int num1 , int num2){
+		int pid = getRoot(num1) ; 
+		int qid = getRoot(num2) ;
+		if(sz[pid] < sz[qid]){id[pid] = qid ; sz[qid] = sz[qid] + sz[pid];}
+		else{id[qid] = pid ; sz[pid] = sz[qid] + sz[pid];}
 	}
 	public boolean connected(int num1 , int num2){
 		if(getRoot(num1) == getRoot(num2)){
-			StdOut.println(num1 + " , "+ num2 + " they are connected");
+			StdOut.println(num1 + ","+ num2 + " they are connected");
 			return true;
 		}
 		
 		else {
-			StdOut.println(num1 + " , "+ num2 + " they are not connected");
+			StdOut.println(num1 + ","+ num2 + " they are not connected");
 			return false;
 		}
 	}
@@ -54,9 +63,13 @@ public class UF_sample_2 {
 		}
 		StdOut.println(str.toString());
 	}
+	
+	
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		UF_sample_2 uf = new UF_sample_2(10);
+		UF_sample_3 uf = new UF_sample_3(10);
 		uf.union(4, 3);
 		uf.println();
 		uf.union(3, 8);
@@ -71,6 +84,7 @@ public class UF_sample_2 {
 		uf.println();
 		uf.connected(5, 0);
 		uf.union(5, 0);
+		uf.connected(5, 0);
 		uf.println();
 		uf.union(7, 2);
 		uf.println();
@@ -79,5 +93,4 @@ public class UF_sample_2 {
 		uf.union(7, 3);
 		uf.println();
 	}
-
 }
