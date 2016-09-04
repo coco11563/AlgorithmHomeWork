@@ -34,7 +34,7 @@ public class UF_sample_3 {
 	}
 	public int getRoot(int num){
 		while(num!=id[num]){
-//			id[num] = id[id[num]];
+//			id[num] = id[id[num]]; //如果每次都是根连根或者二级连二级那么路径压缩就没有意义了
 			num = id[num];
 		}
 		return num ;
@@ -42,7 +42,7 @@ public class UF_sample_3 {
 	public void union(int num1 , int num2){
 		int pid = getRoot(num1) ; 
 		int qid = getRoot(num2) ;
-		if(sz[pid] < sz[qid]){id[pid] = qid ; sz[qid] = sz[qid] + sz[pid];}
+		if(sz[pid] < sz[qid]){id[pid] = qid ; sz[qid] = sz[qid] + sz[pid];}//pid树小则把小树连到大树上
 		else{id[qid] = pid ; sz[pid] = sz[qid] + sz[pid];}
 	}
 	public boolean connected(int num1 , int num2){
