@@ -25,7 +25,7 @@ import edu.princeton.cs.algs4.StdDraw;
 public class PercolationVisualizer {
 
     // delay in miliseconds (controls animation speed)
-    private static final int DELAY = 100;
+    private static final int DELAY = 10;
 
     // draw n-by-n percolation system
     public static void draw(Percolation perc, int n) {
@@ -40,7 +40,7 @@ public class PercolationVisualizer {
         for (int row = 1; row <= n; row++) {
             for (int col = 1; col <= n; col++) {
                 if (perc.isFull(row, col)) {
-                    StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
+                    StdDraw.setPenColor(StdDraw.RED);
                     opened++;
                 }
                 else if (perc.isOpen(row, col)) {
@@ -50,7 +50,9 @@ public class PercolationVisualizer {
                 else
                     StdDraw.setPenColor(StdDraw.BLACK);
                 StdDraw.filledSquare(col - 0.5, n - row + 0.5, 0.45);
+               
             }
+            
         }
 
         // write status text
@@ -64,7 +66,7 @@ public class PercolationVisualizer {
 
     public static void main(String[] args) {
 //        In in = new In(args[0]);      // input file
-    	In in  = new In("./data/Week_I/greeting57.txt");
+    	In in  = new In("./data/Week_I/heart25.txt");
         int n = in.readInt();         // n-by-n percolation system
 
         // turn on animation mode
