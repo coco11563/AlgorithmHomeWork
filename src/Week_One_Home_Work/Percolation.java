@@ -55,17 +55,11 @@ public class Percolation {
 			if(i == 1){
 				checkNearby(i , j);
 				union(0 , toNum(i , j));
-				System.out.println(connected(count-1, toNum(i , j)));
-				System.out.println(connected(0, toNum(i , j)));
 			}else if(i == n){
 				checkNearby(i , j);
 				union(count - 1 , toNum(i , j));
-				System.out.println(connected(count-1, toNum(i , j)));
-				System.out.println(connected(0, toNum(i , j)));
 			}else{
 				checkNearby(i , j);
-			System.out.println(connected(count-1, toNum(i , j)));
-			System.out.println(connected(0, toNum(i , j)));
 			}
 			
 			

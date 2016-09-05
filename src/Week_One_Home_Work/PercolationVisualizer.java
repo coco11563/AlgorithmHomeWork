@@ -18,14 +18,13 @@ package Week_One_Home_Work;
  ******************************************************************************/
 
 import java.awt.Font;
-
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class PercolationVisualizer {
 
     // delay in miliseconds (controls animation speed)
-    private static final int DELAY = 10;
+    private static final int DELAY = 1;
 
     // draw n-by-n percolation system
     public static void draw(Percolation perc, int n) {
@@ -40,7 +39,7 @@ public class PercolationVisualizer {
         for (int row = 1; row <= n; row++) {
             for (int col = 1; col <= n; col++) {
                 if (perc.isFull(row, col)) {
-                    StdDraw.setPenColor(StdDraw.RED);
+                    StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
                     opened++;
                 }
                 else if (perc.isOpen(row, col)) {
@@ -66,7 +65,7 @@ public class PercolationVisualizer {
 
     public static void main(String[] args) {
 //        In in = new In(args[0]);      // input file
-    	In in  = new In("./data/Week_I/heart25.txt");
+    	In in  = new In("./data/Week_I/sedgewick60.txt");
         int n = in.readInt();         // n-by-n percolation system
 
         // turn on animation mode
