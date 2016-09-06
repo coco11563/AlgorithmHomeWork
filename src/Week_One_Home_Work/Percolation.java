@@ -20,14 +20,15 @@ public class Percolation {
 			sz[i] = 1 ;
 		}
 	}
+	
 
 	public boolean isFull(int row, int col) {// is site (row i, column j) full?
 		// TODO Auto-generated method stub
-		if(connected(toNum(row,col) , 0)){
-			return true ;
+		if (connected(toNum(row, col), 0)) {
+			return true;
 		}
 		return false;
-	}
+	} 
 
 	public boolean percolates() { // does the system percolate?
 		// TODO Auto-generated method stub
@@ -55,7 +56,7 @@ public class Percolation {
 			if(i == 1){
 				checkNearby(i , j);
 				union(0 , toNum(i , j));
-			}else if(i == n){
+			}if(i == n){
 				checkNearby(i , j);
 				union(count - 1 , toNum(i , j));
 			}else{
