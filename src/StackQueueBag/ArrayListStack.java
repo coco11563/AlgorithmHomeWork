@@ -4,14 +4,22 @@ package StackQueueBag;
  * Created by coco1 on 2016/9/11.
  */
 //you have to declare the length
+
+/**
+ * will always stay in 25% full or 100% full
+ *
+ * 8n-32n memory used depand on how full this array is
+ *
+ * amount all faster than linkedlist stack(amortize time)--------->maybe loss packet!
+ */
 public class ArrayListStack extends AbstructStack{
     private String[] item;
     private int first;
     private int count;
-    public ArrayListStack(int n) {
-        item = new String[n];
+    public ArrayListStack() {
+        item = new String[1];
         first = 0;
-        count = n;
+        count = 1;
     }
 
 
@@ -24,36 +32,26 @@ public class ArrayListStack extends AbstructStack{
     public String pop() {
         String s = item[--first];
         item[first] = null; //gc will collection it
+        if (first > 0 && first == count/4) resize(-count/2);
         return s; //maybe Underflow
-//        return item[--first];
     }
-
+    //when a array is full, create a new array of twice the size, and copy item
     @Override
     public void push(String s) {
-//        item[++first] = s;
+        if(first == count) { //cost one to every operation ~ 3N (amortize analysis)
+            resize(count);
+        }
         item[first++] = s; //maybe Overflow
     }
 
     /**
      * 数组扩容或者减容
      */
-    public void FixedCapacityStack(int addlength) {
+    public void resize(int addlength) {
         String[] copy = new String[count + addlength];
         System.arraycopy(item, 0, copy, 0,
                 Math.min(count, count + addlength));
         count = count + addlength;
         item = copy;
-    }
-    public static void main(String args[]) {
-        ArrayListStack arrayListStack = new ArrayListStack(10);
-        arrayListStack.push("i");
-        arrayListStack.push("j");
-        arrayListStack.push("k");
-        arrayListStack.push("l");
-        System.out.print(arrayListStack.pop());
-        System.out.print(arrayListStack.pop());
-        System.out.print(arrayListStack.pop());
-        System.out.print(arrayListStack.pop());
-        System.out.print(arrayListStack.isEmpty());
     }
 }

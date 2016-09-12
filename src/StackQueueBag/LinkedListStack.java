@@ -16,6 +16,8 @@ package StackQueueBag;
  * 8 bytes(reference to Node)
  *
  * 40 bytes per stack node  -------->40N
+ *
+ * every operations take constant time -------> guarantee
  */
 public class LinkedListStack extends AbstructStack{
     private Node first = null;
