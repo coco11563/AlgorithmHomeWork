@@ -4,7 +4,11 @@ package StackQueueBag;
  * Created by coco1 on 2016/9/11.
  */
 
+import java.util.Iterator;
+
 /**
+ * this class is iterable
+ *
  * all operation takes constant time in the worst case
  *
  * 16 bytes(object head)
@@ -19,10 +23,10 @@ package StackQueueBag;
  *
  * every operations take constant time -------> guarantee
  */
-public class LinkedListStack extends AbstructStack{
+public class LinkedListStack extends AbstructStack implements Iterable<String>{
     private Node first = null;
     private int count = 0;
-    public class Node {
+    private class Node {
         String item;
         Node next;
         public Node() {
@@ -52,6 +56,27 @@ public class LinkedListStack extends AbstructStack{
         n.next = first;
         first = n;
         count ++;
+    }
+    @Override
+    public Iterator<String> iterator() {
+        return new ListIterator();
+    }
+    private class ListIterator implements Iterator<String> {
+        private Node current = first;
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+        @Override
+        public String next() {
+            String s = current.item;
+            current = current.next;
+            return s;
+        }
+        @Override
+        public void remove() {
+            System.out.print("You shouldn't do this!");
+        }
     }
 
 }
