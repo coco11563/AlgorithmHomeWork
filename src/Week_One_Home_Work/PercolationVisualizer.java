@@ -2,7 +2,7 @@ package Week_One_Home_Work;
 /******************************************************************************
  *  Compilation:  javac PercolationVisualizer.java
  *  Execution:    java PercolationVisualizer input.txt
- *  Dependencies: Percolation.java
+ *  Dependencies: Week_One_Home_Work.submit.Percolation.java
  *
  *  This program takes the name of a file as a command-line argument.
  *  From that file, it

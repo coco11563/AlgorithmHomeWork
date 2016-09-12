@@ -1,7 +1,6 @@
 package StackQueueBag;
 
 import java.util.Iterator;
-import java.util.Objects;
 
 /**
  * Created by coco1 on 2016/9/12.

@@ -2,7 +2,7 @@ package Week_One_Home_Work;
 /******************************************************************************
  *  Compilation:  javac InteractivePercolationVisualizer.java
  *  Execution:    java InteractivePercolationVisualizer n
- *  Dependencies: PercolationVisualizer.java Percolation.java
+ *  Dependencies: PercolationVisualizer.java Week_One_Home_Work.submit.Percolation.java
  *                StdDraw.java StdOut.java
  *
  *  This program takes the grid size n as a command-line argument.
