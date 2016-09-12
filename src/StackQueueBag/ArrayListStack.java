@@ -17,10 +17,7 @@ public class ArrayListStack extends AbstructStack{
 
     @Override
     public boolean isEmpty() {
-        if(first == 0) {
-            return true;
-        }
-        return false;
+        return first == 0;
     }
 
     @Override
