@@ -22,14 +22,16 @@ public class ArrayListStack extends AbstructStack{
 
     @Override
     public String pop() {
-        return item[first--];
+        String s = item[--first];
+        item[first] = null; //gc will collection it
+        return s; //maybe Underflow
 //        return item[--first];
     }
 
     @Override
     public void push(String s) {
-        item[++first] = s;
-//        item[first++] = s;
+//        item[++first] = s;
+        item[first++] = s; //maybe Overflow
     }
 
     /**
