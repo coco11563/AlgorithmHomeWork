@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by coco1 on 2016/9/14.
  */
-public class Dueue<T> extends AbsrtuctDueue<T> {
+public class Dueue<T> extends AbsrtuctDueue<T> implements Iterable<T>{
     private Node first;
     private Node last;
     private int count;
@@ -96,7 +96,7 @@ public class Dueue<T> extends AbsrtuctDueue<T> {
         private Node iter = first;
         @Override
         public boolean hasNext() {
-            return iter.next != null;
+            return iter != null;
         }
 
         @Override
@@ -105,7 +105,7 @@ public class Dueue<T> extends AbsrtuctDueue<T> {
                 throw new NoSuchElementException("No more element!");
             }
             T s = iter.t;
-            iter = iter.next;
+            iter = iter.prior;
             return s;
         }
 
@@ -115,7 +115,23 @@ public class Dueue<T> extends AbsrtuctDueue<T> {
         }
     }
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new iterator();
+    }
+
+    public static void main(String[] args) {
+        Dueue<Integer> i = new Dueue<>();
+        i.addFirst(1);
+        i.addFirst(1);
+        i.addFirst(3);
+        i.addFirst(7);
+        i.addLast(8);
+        i.addLast(8);
+        i.addLast(6);
+        i.addLast(4);
+        Iterator<Integer> iterator = i.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }
