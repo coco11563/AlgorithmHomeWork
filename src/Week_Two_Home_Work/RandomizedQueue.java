@@ -1,5 +1,7 @@
 package Week_Two_Home_Work;
 
+import edu.princeton.cs.algs4.StdRandom;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -9,19 +11,7 @@ import java.util.NoSuchElementException;
 public class RandomizedQueue<T> extends AbstructRandomizedQueue<T> {
 
     private int count;
-    private Node front;//insert queue point
-    private Node last;//out queue point
-    private class Node {
-        T t;
-        Node next;  //out
-        Node prior; //inset
-
-        Node(T item) {
-            t = item;
-            next = null;
-            prior = null;
-        }
-    }
+    private T[] item;
     @Override
     public boolean isEmpty() {
         return count == 0;
@@ -37,26 +27,17 @@ public class RandomizedQueue<T> extends AbstructRandomizedQueue<T> {
         if (t == null) {
             throw new NullPointerException("Try to enqueue a null item");
         }
-        if (isEmpty()) {//empty
-            front = last = new Node(t);
-            count ++;
-        } else {
-            Node old_front = front;
-            front.prior = new Node(t);
-            front = front.prior;
-            front.next = old_front;
-            count ++;
-        }
-    }
 
+    }
+    private int generater() {
+        return StdRandom.uniform(count);
+    }
     @Override
     public T dequeue() {
         if (isEmpty()) {
             throw new NoSuchElementException("Try to dequeue from a empty queue");
         }
-        T t = front.t;
-        front = front.next;
-        return t;
+        return null;
     }
 
     @Override
@@ -70,10 +51,11 @@ public class RandomizedQueue<T> extends AbstructRandomizedQueue<T> {
     }
 
     private class iterator implements Iterator<T>{
-        private Node iter;
+        private T[] item;
+        private int i;
         @Override
         public boolean hasNext() {
-            return iter != null;
+            return item[i] != null;
         }
 
         @Override
