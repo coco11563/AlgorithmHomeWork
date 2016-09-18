@@ -106,14 +106,14 @@ public class Deque<Item> implements Iterable<Item>{
     public Iterator<Item> iterator() {
         return new iterator();
     }
-//    public static void main(String args[]) {
-//        Deque<Integer> deque = new Deque<>();
-//        deque.addFirst(1);
+    public static void main(String args[]) {
+        Deque<Integer> deque = new Deque<>();
+        deque.addFirst(1);
 //        deque.addFirst(2);
 //        deque.addLast(3);
 //        deque.addLast(4);
 //        deque.addFirst(5);
-//        StdOut.println(deque.removeLast());
-//        StdOut.println(deque.size());
-//    }
+        StdOut.println(deque.removeLast());
+        StdOut.println(deque.size());
+    }
 }
