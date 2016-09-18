@@ -1,4 +1,7 @@
-package Week_Two_Home_Work;
+package Week_Two_Home_Work.submit;
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -6,15 +9,15 @@ import java.util.NoSuchElementException;
 /**
  * Created by coco1 on 2016/9/14.
  */
-public class Dueue<T> extends AbsrtuctDueue<T> implements Iterable<T>{
+public class Deque<Item> implements Iterable<Item>{
     private Node first;
     private Node last;
     private int count;
     private class Node {
-        T t;
+        Item t;
         Node next;
         Node prior;
-        Node(T t1) {
+        Node(Item t1) {
             t = t1;
             next = null;
             prior = null;
@@ -25,18 +28,13 @@ public class Dueue<T> extends AbsrtuctDueue<T> implements Iterable<T>{
             this.prior = n.prior;
         }
     }
-    @Override
     public boolean isEmpty() {
         return count == 0;
     }
-
-    @Override
     public int size() {
         return count;
     }
-
-    @Override
-    public void addFirst(T item) {
+    public void addFirst(Item item) {
         if (item == null) {
             throw new NullPointerException("Add first adding a Null Object!");
         }
@@ -51,9 +49,7 @@ public class Dueue<T> extends AbsrtuctDueue<T> implements Iterable<T>{
             count ++;
         }
     }
-
-    @Override
-    public void addLast(T item) {
+    public void addLast(Item item) {
         if (item == null) {
             throw new NullPointerException("Add last adding a Null Object!");
         }
@@ -68,70 +64,56 @@ public class Dueue<T> extends AbsrtuctDueue<T> implements Iterable<T>{
             count ++;
         }
     }
-
-    @Override
-    public T removeFirst() {
+    public Item removeFirst() {
         if (isEmpty()) {
             throw new NoSuchElementException("Remove First is trying to remove a null Object!");
         }
-        T t = first.t;
+        Item t = first.t;
         first = first.prior;
-        first.next = null;
         count --;
         return t;
     }
-
-    @Override
-    public T removeLast() {
+    public Item removeLast() {
         if (isEmpty()) {
             throw new NoSuchElementException("Remove Last is trying to remove a null Object!");
         }
-        T t = last.t;
+        Item t = last.t;
         last = last.next;
-        last.prior = null;
         count --;
         return t;
     }
-    private class iterator implements Iterator<T>{
+    private class iterator implements Iterator<Item>{
         private Node iter = first;
         @Override
         public boolean hasNext() {
             return iter != null;
         }
-
         @Override
-        public T next() {
+        public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException("No more element!");
             }
-            T s = iter.t;
+            Item s = iter.t;
             iter = iter.prior;
             return s;
         }
-
         @Override
         public void remove() {
             throw new UnsupportedOperationException("Don't Use this method!");
         }
     }
-    @Override
-    public Iterator<T> iterator() {
+    
+    public Iterator<Item> iterator() {
         return new iterator();
     }
-
-    public static void main(String[] args) {
-        Dueue<Integer> i = new Dueue<>();
-        i.addFirst(1);
-        i.addFirst(1);
-        i.addFirst(3);
-        i.addFirst(7);
-        i.addLast(8);
-        i.addLast(8);
-        i.addLast(6);
-        i.addLast(4);
-        Iterator<Integer> iterator = i.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
-    }
+//    public static void main(String args[]) {
+//        Deque<Integer> deque = new Deque<>();
+//        deque.addFirst(1);
+//        deque.addFirst(2);
+//        deque.addLast(3);
+//        deque.addLast(4);
+//        deque.addFirst(5);
+//        StdOut.println(deque.removeLast());
+//        StdOut.println(deque.size());
+//    }
 }

@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Created by coco1 on 2016/9/14.
  */
-public class RandomizedQueue<T> extends AbstructRandomizedQueue<T> {
+public class RandomizedQueue<T> extends AbstructRandomizedQueue<T> implements Iterable<T>{
 
     private int count;
     private T[] item;
