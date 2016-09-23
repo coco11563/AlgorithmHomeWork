@@ -19,7 +19,12 @@ package MergeSort_QuickSort;
  *
  * merge sort is facing on two sorted array
  *
- * 1.2自顶向下的归并方法
+ * use assert to easy debug <---help detect logic problem <-----Documents code
+ *
+ * java -ea XX  --->enable assert
+ *
+ * java -da XX  --->disable assert (default）
+ *
  */
 public class MergeSort{
     public static void main(String args[]) {
