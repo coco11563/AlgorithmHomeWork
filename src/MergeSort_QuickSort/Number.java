@@ -6,7 +6,7 @@ import java.util.Iterator;
  * Created by coco1 on 2016/9/23.
  */
 public class Number implements Comparable<Number>{
-    int num ;
+    public int num ;
     public Number (int n) {
         this.num = n;
     }
