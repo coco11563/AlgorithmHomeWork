@@ -2,12 +2,17 @@ package Elementary_Sorts;
 
 /**
  * Created by coco1 on 2016/9/18.
+ *
  * 希尔排序(Shell Sort)是插入排序的一种。
+ *
  * 也称缩小增量排序，是直接插入排序算法的一种更高效的改进版本。
+ *
  * 希尔排序是非稳定排序算法。
+ *
  * 该方法因DL．Shell于1959年提出而得名。
  *
  * Insertion Sort is inefficient because elements really move only one position at time even we've know
+ *
  * that they have a long way to go
  *
  * In Shell Sort we'll move entries serval positions at a time

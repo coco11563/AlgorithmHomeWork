@@ -1,11 +1,22 @@
 package Elementary_Sorts;
 
 /**
+ * 从0开始遍历
+ *
+ * 把每次选择的数和已排序的对比找到位置交换（插入）
+ *
+ * 直到最后一个数（排序）
+ *
  * Created by coco1 on 2016/9/18.
+ *
  * Sort a random order seque will use (1/4)*N^2 compares and (1/4)*N^2 times exchanges
+ *
  * Insertion Sort do depands on the initial order of the data
+ *
  * BEST CASE : IF the array is ascending order, insertion sort make N-1 compares and 0 exchanges
+ *
  * WORST CASE : IF the array is descending order, insertion sort make ~1/2*N^2 times compares and ~1/2*N^2 times exchanges
+ *
  */
 public class InsertionSort {
     public static void insertionSort(Comparable[] a) {
