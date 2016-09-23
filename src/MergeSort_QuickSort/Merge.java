@@ -29,7 +29,7 @@ import Elementary_Sorts.InsertionSort;
  */
 public class Merge {
     private static final int CUTOFF = 5;
-    private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+    public static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         aux = a.clone(); //Copy不是什么好东西
         assert isSorted(a, lo, mid);
         assert isSorted(a, mid + 1, hi);
