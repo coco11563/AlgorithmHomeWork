@@ -1,5 +1,7 @@
 package MergeSort_QuickSort;
 
+import Elementary_Sorts.InsertionSort;
+
 /**
  * Created by coco1 on 2016/9/23.
  *
@@ -22,8 +24,11 @@ package MergeSort_QuickSort;
  *           |        |             |
  *           v        v             v
  * A(N) <= A(N/2) + A(N/2)    +    6N for N > 1 , with A(1) = 0
+ *
+ * extra space is N
  */
 public class Merge {
+    private static final int CUTOFF = 5;
     private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         aux = a.clone(); //Copy不是什么好东西
         assert isSorted(a, lo, mid);
@@ -43,10 +48,15 @@ public class Merge {
     }
 
     private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
+        if (hi <= lo + CUTOFF - 1) { // <---优化项:加入这个边际条件令这个递归可以更快完成
+            InsertionSort.insertionSort(a , lo , hi); //如果量太小了可以直接用插入排序去解决  <--- 20% faster
+            return;
+        }
         if(lo >= hi) return; //边际条件
         int mid = lo + (hi - lo) / 2; //实时计算lo以完成递归
         sort(a, aux, lo, mid); //sort lo to mid
         sort(a, aux, mid + 1, hi); //sort mid to high
+        if (!less(a[mid + 1], a[mid])) return; // <--- 优化项:如果前项结尾比后项开头还要小，那就不需要再进行merge了
         merge(a, aux, lo, mid, hi); //merge sort ---> 一开始走到这步时就是两两merge
     }
     public static void sort(Comparable[] a) {

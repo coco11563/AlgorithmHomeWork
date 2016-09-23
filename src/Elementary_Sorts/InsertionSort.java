@@ -20,6 +20,18 @@ public class InsertionSort {
             }
         }
     }
+
+    public static void insertionSort(Comparable[] a, int lo, int hi) {
+        for (int i = lo ;i < hi; i++) {
+            for (int j = i ; j > 0 ; j--) {
+                if (less(a[j], a[j-1])) {
+                    exch(a, j , j -1);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
     public static boolean less(Comparable a, Comparable b) {
         if (a.compareTo(b) > 0) return true;
         else {
