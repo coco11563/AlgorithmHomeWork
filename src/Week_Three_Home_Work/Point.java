@@ -49,17 +49,28 @@ public class Point implements Comparable<Point> {
 
     /**
      * Returns the slope between this point and the specified point.
+     *
      * Formally, if the two points are (x0, y0) and (x1, y1), then the slope
+     *
      * is (y1 - y0) / (x1 - x0). For completeness, the slope is defined to be
+     *
      * +0.0 if the line segment connecting the two points is horizontal;
-     * Double.POSITIVE_INFINITY if the line segment is vertical;
-     * and Double.NEGATIVE_INFINITY if (x0, y0) and (x1, y1) are equal.
+     *
+     *  Double.POSITIVE_INFINITY if the line segment is vertical;
+     *
+     * and
+     *
+     * Double.NEGATIVE_INFINITY if (x0, y0) and (x1, y1) are equal.
      *
      * @param  that the other point
+     *
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
+        if (this.x - that.x == 0) { //maybe vertical
+            return that.y - this.y == 0 ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        } else return that.y - this.y == 0 ? +0.0 : (double) (that.y - this.y)/(that.x - this.x);
     }
 
     /**
@@ -76,6 +87,11 @@ public class Point implements Comparable<Point> {
      */
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
+        if (this.y > that.y) return 1;
+        else if (this.y < that.y) return -1;
+        if (this.x > that.x) return 1;
+        else if (this.x < that.x) return -1;
+        return 0;
     }
 
     /**
@@ -86,6 +102,7 @@ public class Point implements Comparable<Point> {
      */
     public Comparator<Point> slopeOrder() {
         /* YOUR CODE HERE */
+        return new slopComparator(this.x, this.y);
     }
 
 
@@ -101,10 +118,33 @@ public class Point implements Comparable<Point> {
         return "(" + x + ", " + y + ")";
     }
 
+    private class slopComparator implements Comparator<Point> {
+        Point p;
+        public slopComparator(int x, int y) {
+            p = new Point(x, y);
+        }
+        @Override
+        public int compare(Point o1, Point o2) {
+            double slop_1 = p.slopeTo(o1);
+            double slop_2 = p.slopeTo(o2);
+            if (slop_1 > slop_2)
+                return 1;
+            else return slop_1 == slop_2 ? 0 : -1;
+        }
+    }
+
     /**
      * Unit tests the Point data type.
      */
     public static void main(String[] args) {
         /* YOUR CODE HERE */
+        Point a = new Point(0,0);
+        Point b = new Point(0,1);
+        Point c = new Point(1,1);
+        Comparator com = a.slopeOrder();
+        System.out.println(com.compare(b, b));
+        c.draw();
     }
+
+
 }
