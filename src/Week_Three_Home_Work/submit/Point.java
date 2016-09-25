@@ -1,4 +1,5 @@
-package Week_Three_Home_Work; /******************************************************************************
+package Week_Three_Home_Work.submit;
+/******************************************************************************
  *  Compilation:  javac Point.java
  *  Execution:    java Point
  *  Dependencies: none
@@ -138,12 +139,6 @@ public class Point implements Comparable<Point> {
      */
     public static void main(String[] args) {
         /* YOUR CODE HERE */
-        Point a = new Point(0,0);
-        Point b = new Point(0,1);
-        Point c = new Point(1,1);
-        Comparator<Point> com = a.slopeOrder();
-        System.out.println(com.compare(b, b));
-        c.draw();
     }
 
 
