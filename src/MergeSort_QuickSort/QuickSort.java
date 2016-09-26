@@ -12,7 +12,7 @@ import edu.princeton.cs.algs4.StdRandom;
  *              partitioning : constant extra space
  *              Depth of recursion : logarithmic extra space(highly probability) <--- can guarantee logarithmic depth by recurring on smaller sub array before large sub array
  *              Insertion sort :　for tiny sub array (< 10 item), we can use Insertion sort to make it faster
- *              Sample : Median of three random item, pick the median one
+ *              Sample : Median of three random item, pick the median one <--- 10%faster
  *
  * Quick Sort is sort for primitive types
  *
