@@ -1,5 +1,6 @@
 package MergeSort_QuickSort;
 
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
@@ -39,5 +40,11 @@ public class Selection {
             else return a[k];
         }
         return a[k];
+    }
+
+    public static void main(String args[]) {
+        Comparable[] key = {1,2,3,4,5,6,8,7,5,3,4,6,8};
+        Comparable ret = select(key,1);
+        StdOut.print(ret);
     }
 }

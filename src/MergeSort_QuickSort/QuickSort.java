@@ -24,11 +24,11 @@ import edu.princeton.cs.algs4.StdRandom;
  *
  * *2 Partition, so that, for some j
  *
- * -entry a[j] is in place
+ *   -entry a[j] is in place
  *
- * -no larger entry to the left of j
+ *   -no larger entry to the left of j
  *
- * -no smaller entry to the right of j
+ *   -no smaller entry to the right of j
  *
  * *3 Sort each piece recursively
  *
