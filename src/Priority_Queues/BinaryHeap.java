@@ -15,8 +15,8 @@ public class BinaryHeap<Key extends Comparable<Key>> {
     private void sink(int K) {
         while (2 * K <= N) {
             int j = 2 * K;
-            if (j < K && less(a[j], a[j + 1])) j ++;
-            if (!less(a[K], a[K])) break;
+            if (j < N && less(a[j], a[j + 1])) j ++;
+            if (!less(a[K], a[j])) break;
             exch(a, K, j);
             K = j;
         }
@@ -54,7 +54,7 @@ public class BinaryHeap<Key extends Comparable<Key>> {
     }
 
     public static boolean less(Comparable a, Comparable b) {
-        if (a.compareTo(b) > 0) return true;
+        if (a.compareTo(b) < 0) return true;
         else {
             return false;
         }
