@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 /**
  * Created by coco1 on 2016/10/10.
+ *
  */
 public class Board {
     private int[] blocks;
@@ -15,30 +16,25 @@ public class Board {
     private int len;
     private int hamming = 0;
     private int manhattan = 0;
-    int blank_row = 0; // 行
-    int blank_col = 0; //列
+    private int blank_row = 0; // 行
+    private int blank_col = 0; //列
     // (where blocks[i][j] = block in row i, column j)
     public Board(int[][] blocks) {// construct a board from an n-by-n array of blocks
         dimension = blocks.length;
         len = dimension * dimension;
         this.blocks = new int[len];
-
-        int n = 0;
         for (int i = 0 ; i < dimension ; i ++) {
             for (int j = 0 ; j < dimension ; j ++) {
-                this.blocks[n] = blocks[i][j];
-                if (blocks[i][j] == 0) {
-                    blank_col = i;
-                    blank_row = j;
-                }
-                if (blocks[dimension][dimension] == 0) continue;
-                if (blocks[i][j] != (i + 1) * dimension + (j + 1)) {
-                    int col = n % dimension;
-                    int row = (n - col) / dimension;
-                    hamming++;
+                int currentValue = blocks[i][j];
+                this.blocks[i * dimension + j] = currentValue;
+                if (currentValue != 0) {
+                    if (currentValue != ((i * dimension) + j + 1)) {
+                        hamming++;
+                    }
+                    int col = (currentValue - 1) % dimension;
+                    int row = (currentValue - col - 1) / dimension;
                     manhattan += (((col > j) ? (col - j) : (j - col)) + ((row > i) ? (row - i) : (i - row)));
                 }
-                n ++;
             }
         }
     }
@@ -85,8 +81,8 @@ public class Board {
             for (int j = 0 ; j < dimension ; j ++) {
                 clone[i][j] = this.blocks[i * dimension + j];
                 if (clone[i][j] == 0) {
-                    blank_col = i;
-                    blank_row = j;
+                    blank_row = i;
+                    blank_col = j;
                 }
             }
         }

@@ -33,10 +33,10 @@ public class PuzzleChecker {
     public static void main(String[] args) {
 
         // for each command-line argument
-        for (String filename : args) {
+
 
             // read in the board specified in the filename
-            In in = new In(filename);
+            In in = new In("C:\\Users\\coco1\\IdeaProjects\\AlgorithmHomeWork\\data\\Week_IIII\\puzzle02.txt");
             int n = in.readInt();
             int[][] tiles = new int[n][n];
             for (int i = 0; i < n; i++) {
@@ -48,7 +48,7 @@ public class PuzzleChecker {
             // solve the slider puzzle
             Board initial = new Board(tiles);
             Solver solver = new Solver(initial);
-            StdOut.println(filename + ": " + solver.moves());
+            StdOut.println("puzzle02" + ": " + solver.moves());
         }
-    }
+
 }
