@@ -35,4 +35,7 @@ public class CoorToAn {
         ret[1] = y1 + distance * Math.cos(Ang);
         return ret;
     }
+    public static void main(String args[]) {
+
+    }
 }

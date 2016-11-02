@@ -1,11 +1,7 @@
 package Week_Four_Home_Work;
 
 import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdRandom;
-
 import java.util.Arrays;
-import java.util.Iterator;
-
 /**
  * Created by coco1 on 2016/10/10.
  *
@@ -13,15 +9,15 @@ import java.util.Iterator;
 public class Board {
     private int[] blocks;
     private int dimension;
-    private int len;
     private int hamming = 0;
     private int manhattan = 0;
     private int blank_row = 0; // 行
     private int blank_col = 0; //列
+    private int way = 0; //表示方向，1为左，2为右，3为上，4为下；以保证移动不会移动到之前走过的地方
     // (where blocks[i][j] = block in row i, column j)
     public Board(int[][] blocks) {// construct a board from an n-by-n array of blocks
         dimension = blocks.length;
-        len = dimension * dimension;
+        int len = dimension * dimension;
         this.blocks = new int[len];
         for (int i = 0 ; i < dimension ; i ++) {
             for (int j = 0 ; j < dimension ; j ++) {
@@ -38,7 +34,6 @@ public class Board {
             }
         }
     }
-
     public int dimension() {// board dimension n
         return dimension;
     }
@@ -54,9 +49,7 @@ public class Board {
     public Board twin() {// a board that is obtained by exchanging any pair of blocks
         int[][] twin = new int[dimension][dimension];
         for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                twin[i][j] = blocks[(i * dimension) + j];
-            }
+            System.arraycopy(blocks, (i * dimension), twin[i], 0, dimension);
         }
         if ((twin[0][0] == 0) || (twin[0][1] == 0)) {//真的是随便换一下啊
             exch(twin, 1, 0, 1, 1);
@@ -74,6 +67,7 @@ public class Board {
     }
 
     public Iterable<Board> neighbors() {// all neighboring boards
+        Board bo;
         Stack<Board> Board_Stack = new Stack<>();
         int[][] clone = new int[dimension][dimension];
         int n = 0;
@@ -87,24 +81,32 @@ public class Board {
             }
         }
 
-        if (blank_col != 0){//列不是最左
+        if (blank_col != 0 && this.way != 1){//列不是最左
             exch(clone, blank_row, blank_col - 1, blank_row, blank_col);
-            Board_Stack.push(new Board(clone));
+            bo = new Board(clone);
+            bo.way = 1;
+            Board_Stack.push(bo);//改变方向为1
             exch(clone, blank_row, blank_col, blank_row, blank_col - 1);
         }
-        if (blank_col != dimension - 1){ //列不是最右
+        if (blank_col != dimension - 1 && this.way != 2){ //列不是最右
             exch(clone, blank_row, blank_col + 1, blank_row, blank_col);
-            Board_Stack.push(new Board(clone));
+            bo = new Board(clone);
+            bo.way = 2;
+            Board_Stack.push(bo);//改变方向为2
             exch(clone, blank_row, blank_col, blank_row, blank_col + 1);
         }
-        if (blank_row != dimension - 1) {//行不是最下
+        if (blank_row != dimension - 1 && this.way != 3) {//行不是最下
             exch(clone, blank_row + 1, blank_col, blank_row, blank_col);
-            Board_Stack.push(new Board(clone));
+            bo = new Board(clone);
+            bo.way = 3;
+            Board_Stack.push(bo);//改变方向为3
             exch(clone, blank_row + 1, blank_col, blank_row, blank_col);
         }
-        if (blank_row != 0){//行不是最上
+        if (blank_row != 0 && this.way != 4){//行不是最上
             exch(clone, blank_row - 1, blank_col, blank_row, blank_col);
-            Board_Stack.push(new Board(clone));
+            bo = new Board(clone);
+            bo.way = 4;
+            Board_Stack.push(bo);//改变方向为4
             exch(clone, blank_row, blank_col, blank_row - 1, blank_col);
         }
         return Board_Stack;
@@ -112,10 +114,11 @@ public class Board {
 
     public String toString() { // string representation of this board (in the output format specified below)
         StringBuilder sb = new StringBuilder();
-        int len = blocks.length;
+        int len = blocks.length / dimension;
         sb.append(len + "\n");
         for (int i = 0 ; i < blocks.length ; i ++) {
             sb.append(String.format("%2d",blocks[i]));
+            sb.append(" ");
             if ((i + 1) % dimension == 0) {
                 sb.append("\n");
             }
