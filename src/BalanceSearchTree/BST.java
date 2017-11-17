@@ -2,8 +2,6 @@ package BalanceSearchTree;
 
 import edu.princeton.cs.algs4.Queue;
 
-import java.util.Iterator;
-
 public class BST <Key extends Comparable<Key>, Value> {
     private Node root;
     private class Node {
@@ -60,7 +58,13 @@ public class BST <Key extends Comparable<Key>, Value> {
         }
     }
 
+    public boolean contains(Key key) {
+        return contains(key, root);
+    }
 
+    private boolean contains(Key key, Node node) {
+        return get(key, node) != null;
+    }
     private Node put(Key key, Value value, Node node) {
         if (node == null) return new Node(key, value, 1);
         else {
@@ -91,6 +95,25 @@ public class BST <Key extends Comparable<Key>, Value> {
         } else {
             return size(node.left);
         }
+    }
+
+    public int range(Key k1, Key k2) {
+        return range(k1, k2, root);
+    }
+
+    private int range(Key k1, Key k2, Node root) {
+        int cmp = k1.compareTo(k2);
+        int ret = 0;
+        Key bigger;
+        if (cmp > 0) {
+            bigger = k1;
+            ret +=  rank(k1) - rank(k2);
+        } else {
+            bigger = k2;
+            ret += rank(k2) - rank(k1);
+        }
+        if (contains(bigger)) ret += 1;
+        return ret;
     }
 
     public Key floor(Key key) {
@@ -240,6 +263,8 @@ public class BST <Key extends Comparable<Key>, Value> {
          System.out.println("rank 2 : " + test.rank("2"));
          System.out.println("floor 1 : " + test.floor("1"));
          System.out.println("floor 6 : " + test.floor("6"));
+         System.out.println("range 0 - 8 : " + test.range("5", "8"));
+
 
          test.deleteMin();
          test.deleteMin();

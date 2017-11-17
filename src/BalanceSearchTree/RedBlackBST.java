@@ -17,7 +17,7 @@ package BalanceSearchTree;
  *
  * 红黑树有着完美的黑色连接平衡
  */
-public class RedBlackBST<Val, Key extends Comparable> {
+public class RedBlackBST <Val, Key extends Comparable<Key>> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
     private Node root;
@@ -80,18 +80,22 @@ public class RedBlackBST<Val, Key extends Comparable> {
         //所有的空点全是false的
         return x != null && x.color == RED;
     }
-
+    public void put(Key key, Val val) {
+        root = put(root, key, val);
+    }
     private Node put(Node h, Key key, Val val) {
         if (h == null) return new Node(key, val, RED);
         int cmp = key.compareTo(h.key);
-
-        if (cmp < 0) h.left = put(h.left, key, val);
-        else  if (cmp > 0) h.right = put(h.right, key, val);
-        else if (cmp == 0) h.val = val;
-
-        if (isRed(h.right) && !isRed(h.left)) {h = rotateLeft(h);} //lean left
-        if (isRed(h.left) && isRed(h.left.left)) {h = rotateRight(h);} //balance 4-Node
-        if (isRed(h.left) && isRed(h.right)) {colorFlip(h);} //split 4-node
+        if (cmp > 0) { //key is large than node
+            h.right = put(h.right, key, val);
+        } else if (cmp < 0) {
+            h.left = put(h.left, key, val);
+        } else {
+            h.val = val;
+        }
+        if (isRed(h.right) && ! isRed(h.left)) h = rotateLeft(h); //check left rotate
+        if (isRed(h.left) && isRed(h.left.left)) h = rotateRight(h); //check right rotate
+        if (isRed(h.left) && isRed(h.right)) colorFlip(h);
 
         return h;
     }
