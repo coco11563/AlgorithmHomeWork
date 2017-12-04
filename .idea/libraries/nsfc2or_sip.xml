@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="nsfc2or_sip">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/Week_One_Home_Work/nsfc2or_sip.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

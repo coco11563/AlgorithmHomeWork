@@ -2,6 +2,8 @@ package BalanceSearchTree;
 
 import edu.princeton.cs.algs4.Queue;
 
+import java.util.List;
+
 public class BST <Key extends Comparable<Key>, Value> {
     private Node root;
     private class Node {
@@ -39,6 +41,7 @@ public class BST <Key extends Comparable<Key>, Value> {
         if (s == null) return 0;
         else return s.N;
     }
+
 
     public Value get(Key key) {
         return get(key, root);
@@ -142,12 +145,14 @@ public class BST <Key extends Comparable<Key>, Value> {
         inorder(q, root);
         return q;
     }
+
     private void inorder(Queue<Key> q, Node node) {
         if (node == null) return;
         inorder(q, node.left);
         q.enqueue(node.key);
         inorder(q, node.right);
     }
+
     private Node min(Node node) {
         if (node == null) return null;
         if (node.left != null) return min(node.left);

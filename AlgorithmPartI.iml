@@ -9,7 +9,7 @@
       <src_folder value="file://$MODULE_DIR$/lib" expected_position="2" />
     </src_description>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -46,5 +46,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="nsfc2or_sip" level="project" />
   </component>
 </module>
