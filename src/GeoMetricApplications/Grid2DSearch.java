@@ -1,4 +1,4 @@
-package BalanceSearchTree;
+package GeoMetricApplications;
 
 import org.jetbrains.annotations.NotNull;
 
