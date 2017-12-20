@@ -1,4 +1,5 @@
-package Week_Five_Home_Work; /******************************************************************************
+package Week_Five_Home_Work;
+/******************************************************************************
  *  Compilation:  javac KdTreeGenerator.java
  *  Execution:    java KdTreeGenerator n
  *  Dependencies: 

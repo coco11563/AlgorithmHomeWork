@@ -1,4 +1,5 @@
-package Week_Five_Home_Work; /******************************************************************************
+package Week_Five_Home_Work;
+/******************************************************************************
  *  Compilation:  javac NearestNeighborVisualizer.java
  *  Execution:    java NearestNeighborVisualizer input.txt
  *  Dependencies: PointSET.java KdTree.java
@@ -20,7 +21,7 @@ public class NearestNeighborVisualizer {
     public static void main(String[] args) {
 
         // initialize the two data structures with point from file
-        String filename = args[0];
+        String filename = "C:\\Users\\coco1\\IdeaProjects\\AlgorithmHomeWork\\data\\Week_V\\input10.txt";
         In in = new In(filename);
         PointSET brute = new PointSET();
         KdTree kdtree = new KdTree();

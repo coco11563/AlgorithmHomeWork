@@ -1,4 +1,5 @@
-package Week_Five_Home_Work; /******************************************************************************
+package Week_Five_Home_Work;
+/******************************************************************************
  *  Compilation:  javac KdTreeVisualizer.java
  *  Execution:    java KdTreeVisualizer
  *  Dependencies: KdTree.java
@@ -20,7 +21,7 @@ public class KdTreeVisualizer {
         StdDraw.enableDoubleBuffering();
         KdTree kdtree = new KdTree();
         while (true) {
-            if (StdDraw.isMousePressed()) {
+            if (StdDraw.mousePressed()) {
                 double x = StdDraw.mouseX();
                 double y = StdDraw.mouseY();
                 StdOut.printf("%8.6f %8.6f\n", x, y);

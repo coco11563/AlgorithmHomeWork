@@ -1,4 +1,5 @@
-package Week_Five_Home_Work; /******************************************************************************
+package Week_Five_Home_Work;
+/******************************************************************************
  *  Compilation:  javac RangeSearchVisualizer.java
  *  Execution:    java RangeSearchVisualizer input.txt
  *  Dependencies: PointSET.java KdTree.java
@@ -22,7 +23,7 @@ public class RangeSearchVisualizer {
     public static void main(String[] args) {
 
         // initialize the data structures from file
-        String filename = args[0];
+        String filename = "C:\\Users\\coco1\\IdeaProjects\\AlgorithmHomeWork\\data\\Week_V\\input80K.txt";
         In in = new In(filename);
         PointSET brute = new PointSET();
         KdTree kdtree = new KdTree();
@@ -50,20 +51,20 @@ public class RangeSearchVisualizer {
         while (true) {
 
             // user starts to drag a rectangle
-            if (StdDraw.isMousePressed() && !isDragging) {
+            if (StdDraw.mousePressed() && !isDragging) {
                 x0 = x1 = StdDraw.mouseX();
                 y0 = y1 = StdDraw.mouseY();
                 isDragging = true;
             }
 
             // user is dragging a rectangle
-            else if (StdDraw.isMousePressed() && isDragging) {
+            else if (StdDraw.mousePressed() && isDragging) {
                 x1 = StdDraw.mouseX();
                 y1 = StdDraw.mouseY();
             }
 
             // user stops dragging rectangle
-            else if (!StdDraw.isMousePressed() && isDragging) {
+            else if (!StdDraw.mousePressed() && isDragging) {
                 isDragging = false;
             }
 
@@ -89,8 +90,8 @@ public class RangeSearchVisualizer {
             // draw the range search results for kd-tree in blue
             StdDraw.setPenRadius(.02);
             StdDraw.setPenColor(StdDraw.BLUE);
-            for (Point2D p : kdtree.range(rect))
-                p.draw();
+//            for (Point2D p : kdtree.range(rect))
+//                p.draw();
 
             StdDraw.show();
             StdDraw.pause(20);
