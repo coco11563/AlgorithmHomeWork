@@ -1,6 +1,6 @@
 package Week_Five_Home_Work;
 
-import Week_Three_Home_Work.Point;
+//85
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 
@@ -9,17 +9,13 @@ import java.util.List;
 
 public class KdTree {
     private Node root;
-    public KdTree() {// construct an empty set of points
-        root = null;
-    }
-
-    public KdTree(Point2D p) {
-        root = new Node(p);
-    }
     public boolean isEmpty() {                   // is the set empty?
         return size() == 0;
     }
     public int size() {                        // number of points in the set
+        if (root == null) {
+            return 0;
+        }
         return root.size;
     }
     public void insert (Point2D p) {             // add the point to the set (if it is not already in the set)
@@ -60,20 +56,20 @@ public class KdTree {
     private boolean searchLR(Point2D p, Node root) {
         if (root == null) return false;
         if (root.equal(p)) return true;
-        if (!root.isLeftThan(p)) { // root is on the upside
-            return searchBU(p, root.left);
-        } else {
+        if (root.isLeftThan(p)) { // root is on the upside
             return searchBU(p, root.right);
+        } else {
+            return searchBU(p, root.left);
         }
     }
 
-    private boolean searchBU(Point2D p, Node right) {
+    private boolean searchBU(Point2D p, Node root) {
         if (root == null) return false;
         if (root.equal(p)) return true;
-        if (!root.isBelowThan(p)) { // root is on the upside
-            return searchLR(p, root.left);
-        } else {
+        if (root.isBelowThan(p)) { // root is on the upside
             return searchLR(p, root.right);
+        } else {
+            return searchLR(p, root.left);
         }
     }
 
@@ -223,7 +219,7 @@ public class KdTree {
     public static void main(String[] args) {
     }
 
-    class Node {
+    private class Node {
         Point2D point2D;
         Node left;
         Node right;
@@ -261,4 +257,6 @@ public class KdTree {
         }
     }
 }
+
+
 
