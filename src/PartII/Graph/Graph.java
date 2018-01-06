@@ -13,7 +13,10 @@ public class Graph {
     private Bag<Integer> [] adj;
     public Graph(In in) {
         this.V = in.readInt();
-        adj = (Bag<Integer>[]) new Bag[V];
+        adj = new Bag[V];
+        for (int i = 0 ; i < V ; i ++) {
+            adj[i] = new Bag<>();
+        }
         while (in.hasNextLine()) {
             int i = in.readInt();
             int j = in.readInt();
@@ -23,7 +26,10 @@ public class Graph {
 
     public Graph (int V) {
         this.V = V;
-        adj = (Bag<Integer>[]) new Bag[V];
+        adj = new Bag[V];
+        for (int i = 0 ; i < V ; i ++) {
+            adj[i] = new Bag<>();
+        }
     }
 
     public void addEdge (int V, int W) {
