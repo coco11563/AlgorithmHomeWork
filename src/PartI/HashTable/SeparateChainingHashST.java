@@ -1,4 +1,4 @@
-package HashTable;
+package PartI.HashTable;
 
 /**
  * 假设J：均匀散列假设，我们使用的散列函数可以均匀并独立地将所有的键散布于0至M - 1的范围内
@@ -25,6 +25,7 @@ public class SeparateChainingHashST<Key, Value> {
     public SeparateChainingHashST(int n) {
         this.M = n;
     }
+
     private static class Node {
         private Object Key;
         private Object Value;
@@ -114,7 +115,7 @@ public class SeparateChainingHashST<Key, Value> {
     }
     public static void main(String args[]) {
         SeparateChainingHashST<String, String> testMap = new SeparateChainingHashST<>();
-        String filename = "C:\\Users\\coco1\\IdeaProjects\\AlgorithmHomeWork\\data\\PartI.Week_V\\input10K.txt";
+        String filename = "/Users/xgxyi03/IdeaProjects/AlgorithmHomeWork/data/PartI/Week_V/input10K.txt";
         In in = new In(filename);
         while (!in.isEmpty()) {
             String x = in.readString();

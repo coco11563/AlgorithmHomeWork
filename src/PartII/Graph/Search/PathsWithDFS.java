@@ -1,14 +1,15 @@
-package PartII.Graph;
+package PartII.Graph.Search;
 //Decouple the graph data type from graph processing
 
+import PartII.Graph.Graph;
 import edu.princeton.cs.algs4.Stack;
 
 import java.util.TreeSet;
 
-public class Paths {
+public class PathsWithDFS {
     private Graph graph;
     private int vertice;
-    public Paths(Graph graph, int s) {
+    public PathsWithDFS(Graph graph, int s) {
         this.graph = graph;
         this.vertice = s;
         marked = new boolean[graph.V()];
@@ -32,12 +33,14 @@ public class Paths {
         for (Integer v : graph.adj(v1)) {
             if (i.contains(v)) continue;
             if (hasPath(v, v2, i, path)) {
-                path.push(v);
+                path.push(v); //内部递归 寻找该点后续
                 return true;
             }
         }
         return false;
     }
+
+    //aLGORITHM 书上方法
     //在记录路由时可以很容易想到，如果需要进行多次搜索，下一次搜索可以建立在之前搜索的基础上，我们只需要记录上一次搜索的结果，如已知1->5， 5->6，我们可以得到1->6而不需要再次全体搜索
     //如何记录路由成为一个问题
     private boolean[] marked;
@@ -69,6 +72,9 @@ public class Paths {
         path.push(vertice);
         return path;
     }
+
+
+
     public static void main(String args[]) {
         Graph g = new Graph(6);
         g.addEdge(0, 1);
@@ -76,7 +82,7 @@ public class Paths {
         g.addEdge(1, 3);
         g.addEdge(3, 4);
         g.addEdge(4, 5);
-        Paths p = new Paths(g, 0);
+        PathsWithDFS p = new PathsWithDFS(g, 0);
         for (int i : p.pathTo(5)) {
             System.out.println(i + 1);
         }

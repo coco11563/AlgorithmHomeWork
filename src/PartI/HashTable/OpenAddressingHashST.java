@@ -1,4 +1,4 @@
-package HashTable;
+package PartI.HashTable;
 
 import edu.princeton.cs.algs4.In;
 

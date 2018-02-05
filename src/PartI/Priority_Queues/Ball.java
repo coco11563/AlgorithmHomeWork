@@ -1,4 +1,4 @@
-package Priority_Queues;
+package PartI.Priority_Queues;
 
 /**
  * Created by coco1 on 2016/11/2.

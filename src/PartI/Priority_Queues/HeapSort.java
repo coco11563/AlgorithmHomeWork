@@ -1,4 +1,4 @@
-package Priority_Queues;
+package PartI.Priority_Queues;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -17,7 +17,7 @@ import edu.princeton.cs.algs4.StdRandom;
  * ***Significance*** In-Place sorting algorithm with NLgN worst-case
  *   - MergeSort : no, Linear extra space.          <=== in-place merge possible, not practical
  *   - QuickSort : no, quadratic time in worst case.<=== N lgN worst-cast quickSort possible, Not Practical!
- *   - HeapSort : yes!
+ *   - HeapSort  : yes!
  *
  *    First thing is the inner loop is longer than Quicksorts.
  *    Like Mergesort there is more things to do in the inner loop.

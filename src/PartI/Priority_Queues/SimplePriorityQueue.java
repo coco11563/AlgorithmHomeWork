@@ -1,4 +1,4 @@
-package Priority_Queues;
+package PartI.Priority_Queues;
 
 import java.util.Iterator;
 
